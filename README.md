@@ -2,6 +2,8 @@
 
 Reader for ArduPilot/APM binary logs made in C#
 
+![ArduLogReader](blob/master/promo.png)
+
 ### So what does it do?
 
 This handy piece of code allows you to read and parse the ArduPilot binary system logs (.bin) format, also known as SDLogs. It also supports PixHawk/PX4 firmware logs that use the same format.
