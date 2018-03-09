@@ -2,7 +2,9 @@
 
 Reader for ArduPilot/APM binary logs made in C#
 
-![ArduLogReader](blob/master/promo.png)
+<p align="center">
+  <img src="blob/master/promo.png">
+</p>
 
 ### So what does it do?
 
