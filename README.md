@@ -10,7 +10,8 @@ This handy piece of code allows you to read and parse the ArduPilot binary syste
 
 ```C#
 var parser = new ArduLogParser("example.bin");
-// `csv.Results` contains the all the extracted data
+parser.Parse();
+// `parser.Results` contains the all the extracted data
 
 // Generate and output CSV to console
 var csv = parser.GenerateCSV();
@@ -21,6 +22,32 @@ System.IO.File.WriteAllText("Huge.csv", csv);
 ```
 
 See [`/ArduLogReader/Program.cs`](https://github.com/AliFlux/ArduLogReader/blob/master/ArduLogReader/Program.cs) for a running example.
+
+
+### Using Async
+
+The recommended approach towards reading a binary file is to do blocking operations asynchronously. This example demonstrates an async call.
+
+```C#
+var parser = new ArduLogParser("example.bin");
+await parser.Parse();
+// `parser.Results` contains the all the extracted data
+```
+
+### Getting Progress
+
+For large flight logs, this reader can give the progress so that it can be used in the UI and make waiting a bit more bearable. **Note: This only works for async parsing**
+
+```C#
+parser.OnProgress += Parser_OnProgress;
+await parser.Parse();
+
+private static void Parser_OnProgress(object sender, double e)
+{
+	// where `e` is the progress from 0 to 1
+	Console.WriteLine(e);
+}
+```
 
 ### Motivation
 

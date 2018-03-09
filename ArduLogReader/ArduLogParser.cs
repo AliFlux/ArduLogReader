@@ -70,14 +70,27 @@ class ArduLogParser
         }
     }
 
-    // Initialize and parse the file
-    public ArduLogParser(string filePath)
-    {
+    public event EventHandler OnStart;
+    public event EventHandler<double> OnProgress;
+    public event EventHandler OnEnd;
+
+    public ArduLogParser(string filePath) {
         this.filePath = filePath;
-        parse();
     }
 
-    private void parse()
+    public void Parse()
+    {
+        //Task task = Task.Run(() => this.ParseAsync());
+        Task task = this.ParseAsync();
+        task.Wait();
+    }
+
+    public async Task ParseAsync()
+    {
+        await this.parse();
+    }
+
+    private async Task parse()
     {
         var file = System.IO.File.Open(filePath, System.IO.FileMode.Open);
         int position = 0;
@@ -85,10 +98,13 @@ class ArduLogParser
         buffer = new byte[0];
         var bytesRead = 0;
         bool isFirstRow = true;
+        var totalSize = file.Length;
 
         result = new List<Dictionary<string, string>>();
-        
-        while ((bytesRead = file.Read(chunk, 0, BLOCK_SIZE)) > 0)
+
+        OnStart?.Invoke(this, null);
+
+        while ((bytesRead = await file.ReadAsync(chunk, 0, BLOCK_SIZE)) > 0)
         {
             if (chunk.Length == 0)
             {
@@ -142,10 +158,16 @@ class ArduLogParser
             }
 
             bytesRead += pointer;
-            position += chunk.Length;
+            position += bytesRead;
 
             emitRow();
+
+            double progress = (double)position / totalSize / 2;
+            OnProgress?.Invoke(this, progress);
+
         }
+
+        OnEnd?.Invoke(this, null);
     }
 
     void parseMessageDescription()
