@@ -6,7 +6,7 @@ Reader for ArduPilot/APM binary logs made in C#
 
 This handy piece of code allows you to read and parse the ArduPilot binary system logs (.bin) format, also known as SDLogs. It also supports PixHawk/PX4 firmware logs that use the same format.
 
-### How to use
+### Basic Example
 
 ```C#
 var parser = new ArduLogParser("example.bin");
@@ -36,7 +36,7 @@ await parser.Parse();
 
 ### Getting Progress
 
-For large flight logs, this reader can give the progress so that it can be used in the UI and make waiting a bit more bearable. **Note: This only works for async parsing**
+For large flight logs, ArduLogReader can give the progress so that it can be used in the UI, and make waiting a bit more bearable. **Note: This only works with async parsing**
 
 ```C#
 parser.OnProgress += Parser_OnProgress;
@@ -52,6 +52,14 @@ private static void Parser_OnProgress(object sender, double e)
 ### Motivation
 
 There are implementations for binary log reading in python and C++, but not C#. C++ implementation could be used using C++/CLI, but the code is heavy and bloated. This implementation is lightweight.
+
+### Features
+
+- Tiny API that provides both structured output and CSV
+- Supports both async and sync functions for all-purpose use.
+- Supports logging progress with events (`OnStart`, `OnProgress`, `OnEnd`)
+- Can load interrupted flight logs
+- Parts of the code can be recycled to fit other logging formats (ulog, tlog, ...)
 
 ### Contribution
 
