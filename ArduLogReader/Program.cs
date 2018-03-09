@@ -26,6 +26,7 @@ namespace ArduLogReader
         static async Task MainAsync(string[] args)
         {
             var parser = new ArduLogParser("example.bin");
+            parser.OnProgress += Parser_OnProgress;
             await parser.ParseAsync();
             // `parser.Results` contains the pure structured data
 
@@ -34,6 +35,11 @@ namespace ArduLogReader
             Console.Write(csv);
 
             Console.Read();
+        }
+
+        private static void Parser_OnProgress(object sender, double e)
+        {
+            Console.WriteLine(e);
         }
     }
 }
