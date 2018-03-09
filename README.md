@@ -20,7 +20,7 @@ Console.Write(csv);
 System.IO.File.WriteAllText("Huge.csv", csv);
 ```
 
-See [`/ArduLogReader/Program.cs`](https://github.com/AliFlux/ArduLogReader/Program.cs) for a running example.
+See [`/ArduLogReader/Program.cs`](https://github.com/AliFlux/ArduLogReader/blob/master/ArduLogReader/Program.cs) for a running example.
 
 ### Motivation
 
