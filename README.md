@@ -3,7 +3,7 @@
 Reader for ArduPilot/APM binary logs made in C#
 
 <p align="center">
-  <img src="blob/master/promo.png">
+  <img src="promo.png">
 </p>
 
 ### So what does it do?
