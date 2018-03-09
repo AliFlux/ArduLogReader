@@ -1,0 +1,7 @@
+F:\AliData\C#\ArduLogReader\ArduLogReader\bin\Debug\ArduLogReader.exe.config
+F:\AliData\C#\ArduLogReader\ArduLogReader\bin\Debug\ArduLogReader.exe
+F:\AliData\C#\ArduLogReader\ArduLogReader\bin\Debug\ArduLogReader.pdb
+F:\AliData\C#\ArduLogReader\ArduLogReader\obj\Debug\ArduLogReader.csprojResolveAssemblyReference.cache
+F:\AliData\C#\ArduLogReader\ArduLogReader\obj\Debug\ArduLogReader.csproj.CoreCompileInputs.cache
+F:\AliData\C#\ArduLogReader\ArduLogReader\obj\Debug\ArduLogReader.exe
+F:\AliData\C#\ArduLogReader\ArduLogReader\obj\Debug\ArduLogReader.pdb
